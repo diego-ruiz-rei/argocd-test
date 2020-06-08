@@ -12,45 +12,45 @@ spec:
     chart: sonatype-nexus
     helm:
       values: |
-      nexusProxy:
-        env:
-            nexusDockerHost: container.codechallenge.reisys.io
-            nexusHttpHost: nexus.codechallenge.reisys.io
-    
-        nexusBackup:
+        nexusProxy:
             env:
-                targetBucket: "gs://my-nexus-backup"
+                nexusDockerHost: container.codechallenge.reisys.io
+                nexusHttpHost: nexus.codechallenge.reisys.io
+        
+            nexusBackup:
+                env:
+                    targetBucket: "gs://my-nexus-backup"
+                persistence:
+                    storageClass: standard
+            
+            ingress:
+                enabled: true
+                annotations:
+                    kubernetes.io/ingress.class: nginx
+                rules:
+                - host: nexus.codechallenge.reisys.io
+                    http:
+                    paths:
+                    - path: /
+                        backend:
+                            serviceName: nexus-sonatype-nexus
+                            servicePort: 80
+            
             persistence:
                 storageClass: standard
-        
-        ingress:
-            enabled: true
-            annotations:
-                kubernetes.io/ingress.class: nginx
-            rules:
-            - host: nexus.codechallenge.reisys.io
-                http:
-                paths:
-                - path: /
-                    backend:
-                        serviceName: nexus-sonatype-nexus
-                        servicePort: 80
-        
-        persistence:
-            storageClass: standard
-            storageSize: 1024Gi
-        
-        resources:
-            requests:
-                cpu: 250m
-                # Based on https://support.sonatype.com/hc/en-us/articles/115006448847#mem
-                # and https://twitter.com/analytically/status/894592422382063616:
-                #   Xms == Xmx
-                #   Xmx <= 4G
-                #   MaxDirectMemory >= 2G
-                #   Xmx + MaxDirectMemory <= RAM * 2/3 (hence the request for 4800Mi)
-                #   MaxRAMFraction=1 is not being set as it would allow the heap
-                #     to use all the available memory.
-                memory: 4800Mi
+                storageSize: 1024Gi
+            
+            resources:
+                requests:
+                    cpu: 250m
+                    # Based on https://support.sonatype.com/hc/en-us/articles/115006448847#mem
+                    # and https://twitter.com/analytically/status/894592422382063616:
+                    #   Xms == Xmx
+                    #   Xmx <= 4G
+                    #   MaxDirectMemory >= 2G
+                    #   Xmx + MaxDirectMemory <= RAM * 2/3 (hence the request for 4800Mi)
+                    #   MaxRAMFraction=1 is not being set as it would allow the heap
+                    #     to use all the available memory.
+                    memory: 4800Mi
     repoURL: https://oteemo.github.io/charts
     targetRevision: 2.1.0
