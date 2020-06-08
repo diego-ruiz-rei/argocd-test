@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: monitoring
     server: https://kubernetes.default.svc
-  project: infrastructure
+  project: default
   source:
     chart: prometheus-operator
     helm:

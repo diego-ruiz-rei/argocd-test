@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: build
     server: https://kubernetes.default.svc
-  project: infrastructure
+  project: default
   source:
     chart: sonatype-nexus
     helm:
