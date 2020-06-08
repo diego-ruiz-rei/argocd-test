@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: build
     server: https://kubernetes.default.svc
-  project: default
+  project: infrastructure
   source:
     chart: jenkins
     helm:
