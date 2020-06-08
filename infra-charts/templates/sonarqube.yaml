@@ -11,7 +11,7 @@ spec:
   source:
     chart: sonarqube
     helm:
-      valueFiles: |
+      values: |
         nexusProxy:
             env:
             nexusDockerHost: container.codechallenge.reisys.io

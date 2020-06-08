@@ -11,7 +11,7 @@ spec:
   source:
     chart: sonatype-nexus
     helm:
-      valueFiles: |
+      values: |
         ingress:
             enabled: true
             hosts:
