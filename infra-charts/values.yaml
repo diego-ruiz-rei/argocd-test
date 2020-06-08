@@ -3,4 +3,4 @@
 # Declare variables to be passed into your templates.
 
 cluster: https://kubernetes.default.svc
-project: default
+project: infrastructure
