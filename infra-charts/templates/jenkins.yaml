@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd
+spec:
+  destination:
+    namespace: build
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: jenkins
+    helm:
+      valueFiles:
+      - values.yaml
+      - jenkins-values.yaml
+    repoURL: https://kubernetes-charts.storage.googleapis.com/
+    targetRevision: 2.0.1
