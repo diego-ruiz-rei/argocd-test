@@ -28,9 +28,8 @@ spec:
             rules:
             - host: nexus.codechallenge.reisys.io
                 http:
-                paths:
-                - path: /
-                    backend:
+                    paths:
+                    - backend:
                         serviceName: nexus-sonatype-nexus
                         servicePort: 80
         persistence:
