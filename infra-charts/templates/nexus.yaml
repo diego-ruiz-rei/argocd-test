@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nexus
+  namespace: argocd
+spec:
+  destination:
+    namespace: build
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: sonatype-nexus
+    helm:
+      valueFiles: |
+        ingress:
+            enabled: true
+            hosts:
+                - name: sonar.codechallenge.reisys.io
+            annotations:
+                kubernetes.io/ingress.class: nginx
+    repoURL: https://oteemo.github.io/charts
+    targetRevision: 2.1.0
