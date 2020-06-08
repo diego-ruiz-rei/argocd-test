@@ -11,7 +11,7 @@ spec:
   source:
     chart: jenkins
     helm:
-      value: |
+      values: |
         master:
           useSecurity: true
           adminUser: admin
