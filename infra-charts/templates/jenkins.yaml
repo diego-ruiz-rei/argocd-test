@@ -12,7 +12,6 @@ spec:
     chart: jenkins
     helm:
       valueFiles:
-      - values.yaml
       - jenkins-values.yaml
     repoURL: https://kubernetes-charts.storage.googleapis.com/
     targetRevision: 2.0.1

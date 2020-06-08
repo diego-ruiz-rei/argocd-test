@@ -1,3 +1,5 @@
+cluster: https://kubernetes.default.svc
+project: default
 master:
     useSecurity: true
     adminUser: admin
