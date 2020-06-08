@@ -45,4 +45,4 @@ spec:
                 #     to use all the available memory.
                 memory: 4800Mi
     repoURL: https://oteemo.github.io/charts
-    targetRevision: 2.1.0
+    targetRevision: 6.2.2
